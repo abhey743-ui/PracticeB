@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: Config-Serve
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: "classpath:/Config"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    liveness-status:
+      enabled: true
+    readiness-status:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true

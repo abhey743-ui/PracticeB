@@ -1,0 +1,17 @@
+
+
+contact:
+  name: "Aman"
+  location: "London"
+  speciality:
+    - Digital Marketing
+    - Hospitality
+  otherInfo:
+    university: "UWL"
+    age: 29
+    cast: "Sharma"
+
+
+hospital:
+  name: "AIMS HOSPITAL"
+  leadName: "Naman"

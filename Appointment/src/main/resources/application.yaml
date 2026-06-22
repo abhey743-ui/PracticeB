@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: Appointment
+  config:
+    import: "configserver:http://localhost:8080/"
+  datasource:
+    url: "jdbc:postgresql://localhost:5433/company"
+    password: "Abheysaini@1"
+    username: "postgres"
+    driverClassName: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+server:
+  port: 8082
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetchRegistry: true
+    fetchWithEureka: true
+    serviceUrl:
+      defaultZone: "http://localhost:8075/eureka"
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+     liveness-state:
+       enabled: true
+     readiness-state:
+       enabled: true
+
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  ifo:
+    env:
+      enabled: true
+
+info:
+  application:
+    name: "Appointment"
+    description: "This is my appointment Application handling all the appointments"

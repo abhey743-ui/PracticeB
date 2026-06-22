@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: Api-Gateway
+  cloud:
+    gateway:
+      gateway:
+        server:
+          webflux:
+            discovery:
+              locator:
+                enabled: false
+                lowerCaseServiceId: true
+            httpclient:
+              connect-timeout: 1000
+              response-timeout: 2s
+  config:
+    import: "configserver:http://localhost:8080/"
+server:
+  port: 8072
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    liveness-state:
+      enabled: true
+
+    readiness-state:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled
+    gateway:
+      access: unrestricted
+
+  info:
+    env:
+      enabled: true
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: "http://localhost:8075/eureka"
+info:
+  application:
+    name: "Api gateway"
+    description: "This is api gateway"
+
+logging:
+  level:
+    com:
+      Apigateway: DEBUG
+
+resilience4j.circuitbreaker:
+   instances:
+     patientBreaker:
+       slidingWindowSize: 4
+       failureThreshold: 60
+       permittedNumberOfCallsInHalfOpenState: 4
+       waitDurationInOpenState: 10s
+
+
+
+
